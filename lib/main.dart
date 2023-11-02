@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,12 +24,26 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("I Am Iron Man!"),
-      ),
-    );
+    return Scaffold(
+        body: FutureBuilder(
+      future: getUsers(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return ListView.builder(
+            itemCount: snapshot.data!.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(snapshot.data[index].name),
+                subtitle: Text(snapshot.data[index].email),
+              );
+            },
+          );
+        }
+        return const CircularProgressIndicator();
+      },
+    ));
   }
 }
