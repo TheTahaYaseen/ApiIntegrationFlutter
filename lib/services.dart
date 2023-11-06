@@ -9,9 +9,8 @@ registerUser({required String name, required String email}) async {
       body: jsonEncode({"name": name, "email": email}));
 
   if (response.statusCode == 200) {
-    return "Successfully Registered!";
-    return "Successfully Registered!";
+    return "Successfully Registered! Response body: ${response.body}";
   } else {
-    return "An Error Occured During Registration! Please Try Again!";
+    return "An Error Occured During Registration! Please Try Again! Response body: ${response.body}";
   }
 }
