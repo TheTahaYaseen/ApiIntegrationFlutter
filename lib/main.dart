@@ -45,7 +45,15 @@ class HomePage extends StatelessWidget {
               decoration: const InputDecoration(
                   hintText: "E.g. thetahayaseen@gmail.com"),
             ),
-            ElevatedButton(onPressed: () {}, child: Text("Add"))
+            ElevatedButton(
+                onPressed: () {
+                  var name = _nameEditingController.text;
+                  var email = _emailEditingController.text;
+                  if (name.isNotEmpty && email.isNotEmpty) {
+                    registerUser(name: name, email: email);
+                  }
+                },
+                child: Text("Add"))
           ],
         ),
       ),
