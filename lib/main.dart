@@ -31,6 +31,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController _nameEditingController = TextEditingController();
     TextEditingController _emailEditingController = TextEditingController();
+    String error = "";
     return Scaffold(
       body: Center(
         child: Column(
@@ -50,7 +51,9 @@ class HomePage extends StatelessWidget {
                   var name = _nameEditingController.text;
                   var email = _emailEditingController.text;
                   if (name.isNotEmpty && email.isNotEmpty) {
-                    registerUser(name: name, email: email);
+                    error = registerUser(name: name, email: email);
+                  } else {
+                    error = "Both Username And Email Must Be Filled!";
                   }
                 },
                 child: Text("Add"))
